@@ -1,0 +1,70 @@
+[
+  {
+    "label": "5寸(3R) (12.70cm * 8.90cm)",
+    "value": "0"
+  },
+  {
+    "label": "6寸(4R) (15.20cm * 10.20cm)",
+    "value": "1"
+  },
+  {
+    "label": "7寸(5R) (17.80cm * 12.70cm)",
+    "value": "2"
+  },
+  {
+    "label": "8寸(6R) (20.30cm * 15.20cm)",
+    "value": "3"
+  },
+  {
+    "label": "10寸(8R) (25.40cm * 20.30cm)",
+    "value": "4"
+  },
+  {
+    "label": "12寸 (25.40cm * 30.48cm)",
+    "value": "5"
+  },
+  {
+    "label": "A3 (29.70cm * 42.00cm)",
+    "value": "6"
+  },
+  {
+    "label": "A4 (21.00cm * 29.70cm)",
+    "value": "7"
+  },
+  {
+    "label": "A5 (14.80cm * 21.00cm)",
+    "value": "8"
+  },
+  {
+    "label": "B3 (50.00cm * 70.70cm)",
+    "value": "9"
+  },
+  {
+    "label": "B4 (25.00cm * 35.30cm)",
+    "value": "10"
+  },
+  {
+    "label": "B5 (17.60cm * 25.00cm)",
+    "value": "11"
+  },
+  {
+    "label": "Letter (21.59cm * 27.94cm)",
+    "value": "12"
+  },
+  {
+    "label": "A6 (10.50cm * 14.80cm)",
+    "value": "13"
+  },
+  {
+    "label": "明信片 (14.80cm * 10.00cm)",
+    "value": "14"
+  },
+  {
+    "label": "佳能4x6相纸 (13.35cm * 8.90cm)",
+    "value": "15"
+  },
+  {
+    "label": "Hagaki (10.00cm * 14.80cm)",
+    "value": "16"
+  }
+]

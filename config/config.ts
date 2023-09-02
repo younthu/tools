@@ -95,6 +95,23 @@ export default defineConfig({
       ],
     },
     {
+      path: '/tools',
+      icon: 'tool',
+      name: 'tools',
+      routes: [
+        {
+          path: '/tools',
+          redirect: '/tools/photo-editor',
+        },
+        {
+          name: '证件照排版器',
+          icon: 'photo',
+          path: '/tools/photo-editor',
+          component: './form/photo-editor',
+        },
+      ],
+    },
+    {
       path: '/form',
       icon: 'form',
       name: 'form',
