@@ -67,7 +67,8 @@ const PhotoEditorBasicForm: FC<Record<string, any>> = () => {
     const url = window.URL.createObjectURL(blob),
       anchor = document.createElement('a');
     anchor.href = url;
-    anchor.download = saveas;
+    anchor.download = 'id_photo.png'; //https://code-boxx.com/download-file-javascript-fetch/
+    // anchor.download = saveas;
     anchor.click();
 
     // (C2) CLEAN UP
