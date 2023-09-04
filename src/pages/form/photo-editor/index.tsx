@@ -1,4 +1,4 @@
-import { Card, message } from 'antd';
+import { Card, message, Image } from 'antd';
 import ProForm, {
   ProFormDateRangePicker,
   ProFormDependency,
@@ -10,12 +10,14 @@ import ProForm, {
 } from '@ant-design/pro-form';
 import { useRequest } from 'umi';
 import type { FC } from 'react';
+import { useState } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
-import { fakeSubmitForm } from './service';
+import { fakeSubmitForm, genIdPhoto } from './service';
 import styles from './style.less';
 import photoSizes from './photo-sizes.json';
 import paperSizes from './paper-sizes.json';
 import Uploader from './uploader';
+import { ContactsOutlined } from '@ant-design/icons';
 
 const fieldLabels = {
   photoSize: '证件照尺寸',
@@ -35,15 +37,42 @@ const fieldLabels = {
 };
 
 const PhotoEditorBasicForm: FC<Record<string, any>> = () => {
-  const { run } = useRequest(fakeSubmitForm, {
+  const { run } = useRequest(genIdPhoto, {
     manual: true,
     onSuccess: () => {
       message.success('提交成功');
     },
   });
 
-  const onFinish = async (values: Record<string, any>) => {
-    run(values);
+  const [file, setFile] = useState<object>();
+
+  const onFinish = async (values) => {
+    console.log(values);
+    // run(values);
+    const formData = new FormData();
+    for (const name in values) {
+      formData.append(name, values[name]); // there should be values.photo which is a File object
+    }
+
+    formData.append('photo', file);
+    const res = await fetch('http://127.0.0.1:5000/api/id_photo', {
+      method: 'POST',
+      body: formData, // automagically sets Content-Type: multipart/form-data header
+    });
+    const blob = await res.blob();
+    // const link = window.URL.createObjectURL(blob);
+    // window.location.assign(link);
+
+    // (C1) "FORCE DOWNLOAD"
+    const url = window.URL.createObjectURL(blob),
+      anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = saveas;
+    anchor.click();
+
+    // (C2) CLEAN UP
+    window.URL.revokeObjectURL(url);
+    document.removeChild(anchor);
   };
 
   return (
@@ -99,7 +128,11 @@ const PhotoEditorBasicForm: FC<Record<string, any>> = () => {
         </Card>
 
         <Card title={'第四步'} className={styles.card} bordered={false}>
-          <Uploader></Uploader>
+          {/* <Uploader></Uploader> */}
+          {/* <ProForm.Item name="photo"> */}
+          <input type="file" name="photo" onChange={(evt) => setFile(evt.target.files[0])}></input>
+          {/* </ProForm.Item> */}
+          <Image width={200} src="" />
         </Card>
       </ProForm>
     </PageContainer>

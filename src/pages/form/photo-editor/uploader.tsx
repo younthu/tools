@@ -25,6 +25,7 @@ const beforeUpload = (file: RcFile) => {
 const Uploader: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
+  const [fileData, setFileData] = useState<[]>();
 
   const handleChange: UploadProps['onChange'] = (info: UploadChangeParam<UploadFile>) => {
     if (info.file.status === 'uploading') {
@@ -55,7 +56,20 @@ const Uploader: React.FC = () => {
         className="avatar-uploader"
         showUploadList={false}
         action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-        beforeUpload={beforeUpload}
+        beforeUpload={(file: RcFile) => {
+          if (beforeUpload(file)) {
+            // 把文件内容保存在state里面,
+            // https://www.jianshu.com/p/439fc10f1c90
+            // https://www.jianshu.com/p/6dddd745231b
+            setFileData([...fileData, file]);
+          }
+        }}
+        // 文件列表的删除
+        onRemove={(file) => {
+          const index = fileData?.indexOf(file);
+          const newFileData = fileData?.filter((_, i) => i !== index);
+          setFileData(newFileData);
+        }}
         onChange={handleChange}
       >
         {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
