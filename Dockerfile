@@ -4,7 +4,7 @@ RUN npm i tyarn -g
 RUN tyarn
 # RUN yarn
 
-FROM node:14-alpine AS builder
+FROM node:16-alpine AS builder
 COPY --from=installer /node_modules ./node_modules
 COPY . .
 RUN npm run build
