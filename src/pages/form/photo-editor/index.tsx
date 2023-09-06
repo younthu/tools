@@ -36,6 +36,9 @@ const fieldLabels = {
   type2: '任务类型',
 };
 
+const host = 'http://tools-api.ilibrary.me';
+// const host="http://127.0.0.1:5000"
+
 const PhotoEditorBasicForm: FC<Record<string, any>> = () => {
   const { run } = useRequest(genIdPhoto, {
     manual: true,
@@ -55,7 +58,8 @@ const PhotoEditorBasicForm: FC<Record<string, any>> = () => {
     }
 
     formData.append('photo', file);
-    const res = await fetch('http://127.0.0.1:5000/api/id_photo', {
+
+    const res = await fetch(`${host}/id_photo`, {
       method: 'POST',
       body: formData, // automagically sets Content-Type: multipart/form-data header
     });

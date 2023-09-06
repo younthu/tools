@@ -89,3 +89,4 @@ You can view full document on our [official website](https://pro.ant.design). An
      docker build -t xxx:${VERSION} -f Dockerfile . || echo 'docker build error'
      docker run -d -p 80:80 xxx:${VERSION}
    ```
+5. 启动容器: `docker run -p 8000:80 tools-ui`
