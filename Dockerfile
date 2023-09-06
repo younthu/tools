@@ -7,6 +7,7 @@ RUN tyarn
 FROM node:16-alpine AS builder
 COPY --from=installer /node_modules ./node_modules
 COPY . .
+RUN npx update-browserslist-db@latest
 RUN npm run build
 
 FROM  vixlet/nginx:alpine
