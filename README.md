@@ -86,7 +86,7 @@ You can view full document on our [official website](https://pro.ant.design). An
 3. docker copy 自https://github.com/ant-design/ant-design-pro/issues/10502#issuecomment-1383134945
 4. 执行下面的命令启动 docker
    ```sh
-     docker build -t xxx:${VERSION} -f Dockerfile . || echo 'docker build error'
+     docker build -t tools-ui:latest -f Dockerfile . || echo 'docker build error'
      docker run -d -p 80:80 xxx:${VERSION}
    ```
 5. 启动容器: `docker run -p 8000:80 tools-ui`
